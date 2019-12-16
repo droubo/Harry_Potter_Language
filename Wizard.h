@@ -7,6 +7,8 @@
 using namespace std;
 
 class Wizard {
+
+private:
 	string NAME_;
 	string HOUSE_;
 	int HP_;
