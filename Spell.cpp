@@ -1,14 +1,15 @@
 #include "Spell.h"
+#include <iostream>
 
 vector<Spell> spells;
 
-template <class T>
-Spell::Spell(const string& name_, void action(T *attacker, T*defender)) : NAME_(name_), action(action_) { add_spell(); }
+Spell::Spell(const string& name_, function<void(Wizard*, Wizard*)> action_) : NAME_(name_), action(action_) { add_spell(); }
+//Spell::Spell() { }
 
-void *Spell::get_action() {
-	return &action;
+
+void* Spell::get_action(Wizard* attacker, Wizard* defender) {
+	action(attacker, defender);
 }
-
 string Spell::get_name() {
 	return NAME_;
 }

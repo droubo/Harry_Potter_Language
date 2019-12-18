@@ -35,6 +35,20 @@ CREATE WIZARDS[
 	}
 ]
 
-CREATE cout << wizards.size()
+CREATE SPELL{
+	NAME: "Hello",
+    ACTION : START
+		cout << "Hello " << attacker->get_name();
+	END
+}
+
+CREATE SPELL{
+	NAME: "Yes",
+	ACTION: START
+		cout << "Yes " << attacker->get_name();
+	END
+	}
+
+CREATE cout << spells.size()
 
 END_GAME

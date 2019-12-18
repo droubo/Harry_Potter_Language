@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Wizard.h"
+#include "Spell.h"
 
 using namespace std;
 
@@ -14,6 +15,10 @@ using namespace std;
 #define CREATE &&
 #define WIZARD nullptr != new Wizard
 #define WIZARDS Wizard()
+#define SPELL nullptr != new Spell
+#define ACTION false ? [] (Wizard *t, Wizard *d) { }
+#define START [] (Wizard *attacker, Wizard *defender) {
+#define END }
 
 #endif
 

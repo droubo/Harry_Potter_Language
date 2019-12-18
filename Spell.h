@@ -3,6 +3,8 @@
 
 #include <string>
 #include <vector>
+#include <functional>
+#include "Wizard.h"
 
 using namespace std;
 
@@ -10,12 +12,11 @@ class Spell {
 
 private:
 	string NAME_;
-	template <class T>
-	void action(T *attacker, T *defender);
+	function<void(Wizard*, Wizard*)> action;
 public:
-	template <class T>
-	Spell(const string& name_, void action_(T *attacker, T*defender));
-	void *get_action();
+	//Spell();
+	Spell(const string& name_, function<void(Wizard*, Wizard*)> action_);
+	void *get_action(Wizard* attacker, Wizard* defender);
 	string get_name();
 	void add_spell();
 };
