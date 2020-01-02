@@ -38,7 +38,7 @@ CREATE SPELLS [
 		NAME: "Yes",
 		ACTION : START
 			IF AND(GET_HP(ATTACKER), 101) DO
-				DAMAGE ATTACKER 10
+				DAMAGE DEFENDER 10
 		//EQUIP ATTACKER  ---α
 			END
 		END
@@ -55,14 +55,15 @@ CREATE SPELLS [
 ]
 
 
-CREATE nullptr != spells.at("Yes").get_action(&wizards.at("Harry Potter"), &wizards.at("Harry Iotter"))
+//CREATE nullptr != spells.at("Yes").get_action(&wizards.at("Harry Potter"), &wizards.at("Harry Iotter"))
+
+
 
 MR "Harry Potter" LEARN[
 	SPELL_NAME(Yes)
 	SPELL_NAME(HEAL)
-		0
 ]
-&& nullptr != ((Spell *)wizards.at("Harry Potter").get_spells().at("HEAL"))->get_action(&wizards.at("Harry Potter"), &wizards.at("Harry Iotter"))
-&& cout << wizards.at("Harry Potter").get_hp()
+
+DUEL
 
 END_GAME

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Utilities.h"
+#include "Duel.h"
 
 using namespace std;
 
@@ -29,7 +30,7 @@ using namespace std;
 #define OR OR_()
 #define NOT NOT_()
 #define SHOW ;cout <<
-#define SPELL_NAME(NAME) SPELL_NAME(#NAME),
+#define SPELL_NAME(NAME) -SPELL_NAME(#NAME)
 #define GET_HP(arg1, ...) GET_HP(arg1 __VA_ARGS__)
 #define GET_NAME(arg1, ...) GET_NAME(arg1 __VA_ARGS__)
 #define GET_HOUSE(arg1, ...) GET_HOUSE(arg1 __VA_ARGS__)
@@ -41,6 +42,7 @@ using namespace std;
 //#define ---number -(--)number
 #define MR &&nullptr != (wiz = &wizards.at(
 #define LEARN ))&&LEARN_()
+#define DUEL && nullptr != new Duel()
 
 
 Spell *spell;

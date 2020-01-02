@@ -23,15 +23,20 @@ public:
 
 	void print_members();
 	void add_wizard();
-	string get_name();
-	string get_house();
-	int get_hp();
+	const string get_name();
+	const string get_house();
+	const int get_hp();
 	void set_hp(int hp_);
+	void set_name(string name_);
+	void set_house(string house_);
+	void set_spells(map<string, void*> spells_);
+	map<string, void*>& get_spells();
 	bool get_wand();
 	void set_wand(int wnd);
 	bool operator[] (int index);
 	bool operator , (const int &dmg);
-	map<string, void*> get_spells();
+	void operator = (Wizard &wiz);
+	friend ostream& operator<<(ostream& os, const Wizard& wiz);
 
 	void add_spell(string name, void *spell);
 };
