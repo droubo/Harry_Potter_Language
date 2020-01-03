@@ -37,12 +37,14 @@ public:
 	bool operator , (const int &dmg);
 	void operator = (Wizard &wiz);
 	friend ostream& operator<<(ostream& os, const Wizard& wiz);
+	void damage(const int &effect);
+	void heal(const int &effect);
 
 	void add_spell(string name, void *spell);
 };
 
 extern map<string, Wizard> wizards;
-extern int mode;
-
+extern int mode, round_;
+extern Wizard caster;
 #endif
 #pragma once

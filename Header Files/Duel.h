@@ -17,11 +17,12 @@ public:
 	void show_Wizards_info();
 	void change_turn();
 	Wizard* get_turn();
-	void play_turn();
+	void start_of_round_spells();
 	int check_winner();
 	int get_playerNO(Wizard *wiz);
 };
 
 extern int PlayRound;
+extern multimap<int, function<void()>> to_cast;
 #endif
 #pragma once

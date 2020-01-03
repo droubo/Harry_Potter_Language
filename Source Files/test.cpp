@@ -2,68 +2,60 @@
 
 BEGIN_GAME
 
-CREATE WIZARD{
-	NAME: "Harry Potter",
-	HOUSE : "Gryffindor",
-	HP : 101
-}
-
-CREATE WIZARD{
-	NAME: "Harry Iotter",
-	HOUSE : "Gryffindor",
-	HP : 102
-}
-
-CREATE WIZARDS[
-	WIZARD{
-		NAME: "HarryPotter",
-		HOUSE : "Gryffindor",
-		HP : 103
-	},
-
-		WIZARD{
-			NAME: "Harry Dotter",
-			HOUSE : "Gryffindor",
-			HP : 100
-	},
-		WIZARD{
-			NAME: "Harry Aotter",
-			HOUSE : "Gryffindor",
-			HP : 100
-	}
-]
-
-CREATE SPELLS [
-	SPELL{
-		NAME: "Yes",
-		ACTION : START
-			IF AND(GET_HP(ATTACKER), 101) DO
-				DAMAGE DEFENDER 10
-		//EQUIP ATTACKER  ---α
-			END
+CREATE SPELL{
+NAME: "Sectumsempra",
+ACTION : START
+		 // Για 5 γύρους κάνει 8 damage στον αντίπαλο (DEFENDER)
+		  FOR 5 ROUNDS DO
+		  DAMAGE DEFENDER 8
+		  END
+		EQUIP DEFENDER ---α
+		AFTER 2 ROUNDS DO
+			EQUIP DEFENDER _
 		END
-	},
-	SPELL{
-		NAME: "HEAL",
-		ACTION : START
-			IF AND(GET_HP(ATTACKER), 101) DO
-				HEAL ATTACKER 10
-				//EQUIP ATTACKER  ---α
-			END
 		END
-	}
-]
-
-
-//CREATE nullptr != spells.at("Yes").get_action(&wizards.at("Harry Potter"), &wizards.at("Harry Iotter"))
-
-
-
+}
+CREATE SPELL{
+NAME: "Expulso",
+ACTION : START
+		 // Κάνει 22 damage στον αντίπαλο (DEFENDER)
+		 DAMAGE DEFENDER 22
+		 END
+}
+CREATE SPELL{
+NAME: "Anapneo",
+ACTION : START
+		 // Κάνει heal στον εαυτό του (ATTACKER)
+		 HEAL ATTACKER 30
+		END
+}
+CREATE SPELL{
+NAME: "Expelliarmus",
+	  ACTION : START
+		AFTER 2 ROUNDS DO
+			HEAL ATTACKER 100
+		END
+		END
+}
+CREATE WIZARD{
+NAME: "Harry Potter",
+HOUSE : "Gryffindor",
+HP : 100
+}
+CREATE WIZARD{
+NAME: "Draco Malfoy",
+HOUSE : "Slytherin",
+HP : 90
+}
 MR "Harry Potter" LEARN[
-	SPELL_NAME(Yes)
-	SPELL_NAME(HEAL)
+	SPELL_NAME(Expelliarmus)
+		SPELL_NAME(Sectumsempra)
+		SPELL_NAME(Expulso)
+		SPELL_NAME(Anapneo)
 ]
-
+MR "Draco Malfoy" LEARN[
+	SPELL_NAME(Expelliarmus)
+		SPELL_NAME(Expulso)
+]
 DUEL
-
-END_GAME
+END_GAME

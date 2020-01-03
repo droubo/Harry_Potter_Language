@@ -18,7 +18,7 @@ using namespace std;
 #define SPELL nullptr != new Spell
 #define SPELLS Spell()
 #define ACTION false ? (function<void(Wizard*, Wizard*)>) nullptr
-#define START [] (Wizard *atckr, Wizard *dfndr) {
+#define START [] (Wizard *atckr, Wizard *dfndr) { caster = (*atckr); round_ = PlayRound
 #define ATTACKER (*atckr),
 #define DEFENDER (*dfndr),
 #define END ;}
@@ -37,13 +37,15 @@ using namespace std;
 #define HAS_WAND(arg1, ...) HAS_WAND(arg1 __VA_ARGS__)
 #define DAMAGE ;mode=0;
 #define HEAL ;mode=1;
-#define EQUIP ;mode=2
-#define _ 0
-//#define ---number -(--)number
+#define EQUIP ;mode=2;
+#define _ 1
+#define α a()
 #define MR &&nullptr != (wiz = &wizards.at(
 #define LEARN ))&&LEARN_()
 #define DUEL && nullptr != new Duel()
-
+#define FOR ;times = 
+#define ROUNDS ;AFTER_FOR(), [atckr, dfndr](
+#define AFTER ;times = -
 
 Spell *spell;
 #endif

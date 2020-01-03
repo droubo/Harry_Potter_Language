@@ -3,8 +3,10 @@
 #include <iterator>
 
 map<string, Wizard> wizards;
+Wizard caster;
 
 int mode = -1;
+int round_;
 
 Wizard::Wizard() {}
 
@@ -46,12 +48,8 @@ bool Wizard::operator[] (int index) {
 	return true;
 }
 bool Wizard::operator , (const int &effect) {
-	if (mode == 0) this->set_hp(this->get_hp() - effect);
-	if (mode == 1) {
-		int maxHp = wizards.at(this->get_name()).get_hp();
-		if (this->get_hp() + effect > maxHp) this->set_hp(maxHp);
-		else this->set_hp(this->get_hp() + effect);
-	}
+	if (mode == 0) Wizard::damage(effect);
+	if (mode == 1) Wizard::heal(effect);
 	if (mode == 2) this->set_wand(effect);
 
 	return true;
@@ -85,4 +83,41 @@ void Wizard::set_wand(int wnd) {
 }
 void Wizard::add_spell(string name, void *spell) {
 	this->spells.insert(pair<string, void*>(name, spell));
+}
+void Wizard::damage(const int &effect) {
+	int dmg = effect;
+	if (caster.get_house() == "Slytherin") {
+		if (this->get_house() == "Gryffindor") {
+			dmg += (int)(dmg * 0.20);
+		}
+		else dmg += (int)(dmg * 0.15);
+	}
+	else if (caster.get_house() == "Hufflepuff") {
+		dmg += (int)(dmg * 0.07);
+	}
+	else if (caster.get_house() == "Ravelclaw" && (round_ % 2 == 1)) {
+		dmg += (int)(dmg * 0.07);
+	}
+
+	if (this->get_house() == "Gryffindor") {
+		if (caster.get_house() == "Slytherin") dmg *= 0.7;
+		else dmg *= 0.8;
+	}
+	else if (this->get_house() == "Hufflepuff") {
+		dmg *= 0.93;
+	}
+
+	this->set_hp(this->get_hp() - dmg);
+}
+
+void Wizard::heal(const int &effect) {
+	int heal = effect;
+	int maxHp = wizards.at(this->get_name()).get_hp();
+
+	if (caster.get_house() == "Ravenclaw" && (round_ % 2) == 0) {
+		heal += maxHp * 0.05;
+	}
+
+	if (this->get_hp() + heal > maxHp) this->set_hp(maxHp);
+	else this->set_hp(this->get_hp() + heal);
 }

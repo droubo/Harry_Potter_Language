@@ -2,6 +2,8 @@
 #include <iostream>
 
 int PlayRound = 1;
+multimap<int, function<void()>> to_cast;
+
 
 Duel::Duel() { Duel::start_duel(); }
 
@@ -18,7 +20,7 @@ void Duel::start_duel() {
 	Duel::select_wizard(this->p2);
 	while (check_winner() != 1) {
 		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" << "ROUND " << PlayRound << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
-
+		Duel::start_of_round_spells();
 		Duel::cast_spell(&(*turn));
 		Duel::show_Wizards_info();
 
@@ -78,6 +80,7 @@ void Duel::cast_spell(Wizard *wiz) {
 
 	if (!wiz->get_wand()) {
 		cout << wiz->get_name() << "(Player " << Duel::get_playerNO(wiz) << ") has not a wand so he cant't cast a spell.\n";
+		Duel::change_turn();
 		return;
 	}
 
@@ -117,4 +120,26 @@ int Duel::check_winner() {
 int Duel::get_playerNO(Wizard *wiz) {
 	if (wiz == &this->p1) return 1;
 	else return 2;
+}
+
+void Duel::start_of_round_spells() {
+	multimap<int, function<void()>>::iterator itr;
+	multimap<int, function<void()>> tmp_map;
+	function<void()> tmp;
+	int key_times;
+
+	for (itr = to_cast.begin(); itr != to_cast.end(); ++itr) {
+		tmp = itr->second;
+		key_times = itr->first;
+		if (key_times >= 0) {
+			tmp();
+			if (key_times > 1) {
+				tmp_map.insert(pair<int, function<void()>>(key_times - 1, tmp));
+			}
+		}
+		else {
+			tmp_map.insert(pair<int, function<void()>>(key_times + 1, tmp));
+		}
+	}
+	to_cast = tmp_map;
 }

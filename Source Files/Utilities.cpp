@@ -1,7 +1,8 @@
 #include "Utilities.h"
-
+#include "Duel.h"
 
 Wizard *wiz;
+int times;
 
 AND_::AND_() {}
 bool AND_::operator() (bool first, bool second) {
@@ -19,6 +20,20 @@ LEARN_::LEARN_(){}
 
 bool LEARN_::operator[](bool placeHolder) {
 	return true;
+}
+
+AFTER_FOR::AFTER_FOR() {}
+
+void AFTER_FOR::operator , (function<void()> fun) {
+	to_cast.insert(pair<int, function<void()>>(times, fun));
+}
+
+a::a() {}
+int a::operator -- () {
+	return 0;
+}
+a a::operator - () {
+	return a();
 }
 
 int GET_HP(Wizard wiz) {
