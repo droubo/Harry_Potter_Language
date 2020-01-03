@@ -68,6 +68,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Users\Droubo\Desktop\Harry_Potter_Language\Header Files\;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Droubo\Desktop\Harry_Potter_Language\Header Files\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -97,22 +101,27 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Droubo\Desktop\Harry_Potter_Language\Header Files</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Duel.cpp" />
-    <ClCompile Include="Utilities.cpp" />
-    <ClCompile Include="Spell.cpp" />
-    <ClCompile Include="test.cpp" />
-    <ClCompile Include="Wizard.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Duel.h" />
-    <ClInclude Include="Utilities.h" />
-    <ClInclude Include="Hogwarts.h" />
-    <ClInclude Include="Spell.h" />
-    <ClInclude Include="Wizard.h" />
+    <ClCompile Include="Source Files\Implementation\Duel.cpp" />
+    <ClCompile Include="Source Files\Implementation\Spell.cpp" />
+    <ClCompile Include="Source Files\Implementation\Utilities.cpp" />
+    <ClCompile Include="Source Files\Implementation\Wizard.cpp" />
+    <ClCompile Include="Source Files\Test\test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Header Files\Duel.h" />
+    <ClInclude Include="Header Files\Hogwarts.h" />
+    <ClInclude Include="Header Files\Spell.h" />
+    <ClInclude Include="Header Files\Utilities.h" />
+    <ClInclude Include="Header Files\Wizard.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
