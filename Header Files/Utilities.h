@@ -45,6 +45,7 @@ bool HAS_WAND(Wizard wiz);
 int SPELL_NAME(string name);
 
 extern Wizard *wiz;
+extern Spell *spell;
 extern int times;
 #endif // !UTILITIES_H
 #pragma once

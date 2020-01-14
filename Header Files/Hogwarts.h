@@ -47,6 +47,5 @@ using namespace std;
 #define ROUNDS ;AFTER_FOR(), [atckr, dfndr](
 #define AFTER ;times = -
 
-Spell *spell;
 #endif
 

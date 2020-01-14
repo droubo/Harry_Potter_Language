@@ -128,6 +128,8 @@ void Duel::start_of_round_spells() {
 	function<void()> tmp;
 	int key_times;
 
+	give_hp_to_RavenClaw();
+
 	for (itr = to_cast.begin(); itr != to_cast.end(); ++itr) {
 		tmp = itr->second;
 		key_times = itr->first;
@@ -142,4 +144,16 @@ void Duel::start_of_round_spells() {
 		}
 	}
 	to_cast = tmp_map;
+}
+
+void Duel::give_hp_to_RavenClaw() {
+	if (PlayRound % 2 != 0) return;
+	if (this->p1.get_house() == "Ravenclaw") {
+		const int healing = wizards.at(this->p1.get_name()).get_hp() * 0.05;
+		this->p1.heal(healing);
+	}
+	if (this->p2.get_house() == "Ravenclaw") {
+		const int healing = wizards.at(this->p2.get_name()).get_hp() * 0.05;
+		this->p2.heal(healing);
+	}
 }

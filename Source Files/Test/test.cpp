@@ -44,7 +44,7 @@ HP : 100
 }
 CREATE WIZARD{
 NAME: "Draco Malfoy",
-HOUSE : "Slytherin",
+HOUSE : "Ravenclaw",
 HP : 90
 }
 MR "Harry Potter" LEARN[

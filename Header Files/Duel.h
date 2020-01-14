@@ -20,6 +20,7 @@ public:
 	void start_of_round_spells();
 	int check_winner();
 	int get_playerNO(Wizard *wiz);
+	void give_hp_to_RavenClaw();
 };
 
 extern int PlayRound;

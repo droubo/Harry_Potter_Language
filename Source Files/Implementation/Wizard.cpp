@@ -114,10 +114,6 @@ void Wizard::heal(const int &effect) {
 	int heal = effect;
 	int maxHp = wizards.at(this->get_name()).get_hp();
 
-	if (caster.get_house() == "Ravenclaw" && (round_ % 2) == 0) {
-		heal += maxHp * 0.05;
-	}
-
 	if (this->get_hp() + heal > maxHp) this->set_hp(maxHp);
 	else this->set_hp(this->get_hp() + heal);
 }

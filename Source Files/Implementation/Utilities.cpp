@@ -2,6 +2,7 @@
 #include "Duel.h"
 
 Wizard *wiz;
+Spell *spell;
 int times;
 
 AND_::AND_() {}
@@ -50,7 +51,7 @@ bool HAS_WAND(Wizard wiz) {
 }
 
 int SPELL_NAME(string name) {
-	Spell *spell = (&spells.at(name));
-	wiz->add_spell(name, spell);
+	Spell *spell_ = (&spells.at(name));
+	wiz->add_spell(name, spell_);
 	return 0;
 }
